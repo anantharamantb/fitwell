@@ -11,7 +11,7 @@ namespace fitwell_mvc.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductRate> ProductRates { get; set; }
-        public DbSet<OrderMaster> OrderMasters { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }

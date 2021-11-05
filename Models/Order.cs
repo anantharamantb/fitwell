@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace fitwell_mvc.Models
 {
-    public class OrderMaster
+    public class Order
     {
         [Key]
         public int OrderId { get; set; }

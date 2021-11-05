@@ -45,44 +45,7 @@ namespace fitwell_mvc.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("fitwell_mvc.Models.OrderDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("ExtraCharges")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OrderMasterOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderMasterOrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("fitwell_mvc.Models.OrderMaster", b =>
+            modelBuilder.Entity("fitwell_mvc.Models.Order", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -105,7 +68,41 @@ namespace fitwell_mvc.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("OrderMasters");
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("fitwell_mvc.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("ExtraCharges")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("fitwell_mvc.Models.Product", b =>
@@ -148,7 +145,7 @@ namespace fitwell_mvc.Migrations
                     b.Property<decimal>("Rate")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("SscRate")
+                    b.Property<decimal>("ShopRate")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("StartDate")
@@ -161,24 +158,7 @@ namespace fitwell_mvc.Migrations
                     b.ToTable("ProductRates");
                 });
 
-            modelBuilder.Entity("fitwell_mvc.Models.OrderDetail", b =>
-                {
-                    b.HasOne("fitwell_mvc.Models.OrderMaster", "OrderMaster")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderMasterOrderId");
-
-                    b.HasOne("fitwell_mvc.Models.Product", "Product")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OrderMaster");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("fitwell_mvc.Models.OrderMaster", b =>
+            modelBuilder.Entity("fitwell_mvc.Models.Order", b =>
                 {
                     b.HasOne("fitwell_mvc.Models.Customer", "Customer")
                         .WithMany("Orders")
@@ -187,6 +167,25 @@ namespace fitwell_mvc.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("fitwell_mvc.Models.OrderDetail", b =>
+                {
+                    b.HasOne("fitwell_mvc.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("fitwell_mvc.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("fitwell_mvc.Models.ProductRate", b =>
@@ -205,15 +204,13 @@ namespace fitwell_mvc.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("fitwell_mvc.Models.OrderMaster", b =>
+            modelBuilder.Entity("fitwell_mvc.Models.Order", b =>
                 {
                     b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("fitwell_mvc.Models.Product", b =>
                 {
-                    b.Navigation("OrderDetails");
-
                     b.Navigation("Rates");
                 });
 #pragma warning restore 612, 618

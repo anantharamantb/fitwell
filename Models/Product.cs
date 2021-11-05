@@ -12,7 +12,7 @@ namespace fitwell_mvc.Models
         public string ProductName { get; set; }
         [StringLength(100)]
         public string Description { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; }
+        //public List<OrderDetail> OrderDetails { get; set; }
         public List<ProductRate> Rates { get; set; }
     }
 }

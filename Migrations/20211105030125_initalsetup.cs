@@ -38,7 +38,7 @@ namespace fitwell_mvc.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderMasters",
+                name: "Orders",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
@@ -50,9 +50,9 @@ namespace fitwell_mvc.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderMasters", x => x.OrderId);
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_OrderMasters_Customers_CustomerId",
+                        name: "FK_Orders_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "CustomerId",
@@ -68,7 +68,7 @@ namespace fitwell_mvc.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     Rate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DesignerRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SscRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ShopRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -94,18 +94,17 @@ namespace fitwell_mvc.Migrations
                     Rate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     ExtraCharges = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderMasterOrderId = table.Column<int>(type: "int", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_OrderMasters_OrderMasterOrderId",
-                        column: x => x.OrderMasterOrderId,
-                        principalTable: "OrderMasters",
+                        name: "FK_OrderDetails_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
                         principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderDetails_Products_ProductId",
                         column: x => x.ProductId,
@@ -115,9 +114,9 @@ namespace fitwell_mvc.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_OrderMasterOrderId",
+                name: "IX_OrderDetails_OrderId",
                 table: "OrderDetails",
-                column: "OrderMasterOrderId");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_ProductId",
@@ -125,8 +124,8 @@ namespace fitwell_mvc.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderMasters_CustomerId",
-                table: "OrderMasters",
+                name: "IX_Orders_CustomerId",
+                table: "Orders",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
@@ -144,7 +143,7 @@ namespace fitwell_mvc.Migrations
                 name: "ProductRates");
 
             migrationBuilder.DropTable(
-                name: "OrderMasters");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Products");

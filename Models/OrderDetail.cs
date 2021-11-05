@@ -16,6 +16,6 @@ namespace fitwell_mvc.Models
         public decimal ExtraCharges { get; set; }
         public string Notes { get; set; }
         public Product Product { get; set; }
-        public OrderMaster OrderMaster { get; set; }
+        public Order Order { get; set; }
     }
 }

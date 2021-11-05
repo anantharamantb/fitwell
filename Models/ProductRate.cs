@@ -14,7 +14,7 @@ namespace fitwell_mvc.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal DesignerRate { get; set; }
         [Column(TypeName = "decimal(18,2)")]
-        public decimal SscRate { get; set; }
+        public decimal ShopRate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public Product Product { get; set; }

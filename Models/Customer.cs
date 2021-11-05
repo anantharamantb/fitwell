@@ -14,6 +14,6 @@ namespace fitwell_mvc.Models
         public string Email { get; set; }
         [StringLength(100)]
         public string Address { get; set; }
-        public List<OrderMaster> Orders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }
