@@ -70,3 +70,4 @@ D:\ssc\fitwell\fitwell_mvc\obj\Debug\net5.0\fitwell_mvc.dll
 D:\ssc\fitwell\fitwell_mvc\obj\Debug\net5.0\ref\fitwell_mvc.dll
 D:\ssc\fitwell\fitwell_mvc\obj\Debug\net5.0\fitwell_mvc.pdb
 D:\ssc\fitwell\fitwell_mvc\obj\Debug\net5.0\fitwell_mvc.genruntimeconfig.cache
+D:\ssc\fitwell\fitwell_mvc\obj\Debug\net5.0\Razor\Views\Customer\customer.cshtml.g.cs

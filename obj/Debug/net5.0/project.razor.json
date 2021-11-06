@@ -15629,6 +15629,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\ssc\\fitwell\\fitwell_mvc\\Views\\Customer\\customer.cshtml",
+      "TargetPath": "Views\\Customer\\customer.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\ssc\\fitwell\\fitwell_mvc\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
